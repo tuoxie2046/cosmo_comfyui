@@ -1,0 +1,198 @@
+.#{$prefix}map{
+  height:100%;
+  background: var(--comfy-menu-bg);
+  .p-splitter-gutter{
+    &-handle{
+      height:1px!important;
+    }
+  }
+
+  &-nodes{
+    height:100%;
+    position:relative;
+    &__header{
+      position: absolute;
+      z-index:2;
+      top: 0;
+      left: 0;
+      width:100%;
+      padding: 0.25rem 0 0.25rem 0.5rem;
+      height:2.8rem;
+      background: var(--comfy-menu-bg);
+      border-bottom: 1px solid var(--border-color);
+      @include flex-b();
+      @include bg-blur();
+      .title{
+        @include font-title(13px,400);
+        user-select: none;
+      }
+      .toolbar{
+        @include flex-y();
+        .icon{
+          font-size: 0.85rem;
+          margin-left:0.25rem;
+          cursor: pointer;
+        }
+      }
+    }
+    &__content{
+      position: relative;
+      padding: 2.8rem 0 0;
+      height:100%;
+      overflow: auto;
+      &-searchbox{
+        padding: 1rem;
+        //border-bottom: 1px dashed var(--border-color);
+        //margin-bottom: .5rem;
+      }
+      dl{
+        .label{
+          padding-left: 1rem;
+        }
+      }
+      ul,ol,dl{
+        list-style-type: none;
+        padding:0;
+        margin:0;
+        // toolbar
+        .toolbar{
+          span{
+            font-size: 13px;
+            &.pi-eye{
+              color: var(--input-text);
+            }
+            &.pi-eye-slash{
+              color: var(--descrip-text);
+              &.never{
+                opacity: .5;
+              }
+            }
+          }
+        }
+      }
+      ol{
+        padding: 0;
+        padding-block-start:2px;
+        padding-inline-start: 1rem;
+      }
+      .no_result{
+        @include flex-c();
+        text-align: center;
+      }
+    }
+    .p-contextmenu{
+      display: block!important;
+      position: fixed!important;
+      z-index: 1000!important;
+      //margin-right:var(--sidebar-width);
+    }
+    // group
+    &-group{
+      position: relative;
+      overflow: hidden;
+      width:100%;
+      height:2rem;
+      cursor: default;
+      @include flex-b();
+      pointer-events: auto;
+      .left,.right{
+        height: 100%;
+        @include flex-y();
+      }
+      .left{
+        padding-left:0.5rem;
+        margin-right: .25rem;
+        @include flex-1();
+      }
+      .icon{
+        font-size: 0.85rem;
+        margin-right:0.25rem;
+      }
+      .label{
+        @include flex-y();
+        height:100%;
+        width: 100%;
+        min-width: 80px;
+        span{
+          @include font-title(14px,400);
+          @include clamp();
+          @include css3(user-select, none);
+        }
+      }
+      &:hover{
+        background: var(--content-hover-bg)!important;
+      }
+      &.active{
+        background: var(--theme-color)!important;
+        .label{
+          color: #fff;
+          cursor: default;
+        }
+      }
+      &.never{
+        .label{
+          color: var(--descrip-text);
+          opacity: .4;
+        }
+      }
+      &.bypass{
+        .label{
+          color: var(--descrip-text);
+        }
+      }
+
+    }
+    // node
+    &-node{
+      height: 2rem;
+      cursor: default;
+      @include flex-b();
+      position: relative;
+      overflow: hidden;
+      pointer-events: auto;
+      .node_id{
+        background: #0b2000;
+        padding:0.25rem;
+        margin:0 0 0 0.25rem;
+        border-radius: 0.25rem;
+        text-align: center;
+        color:white;
+        font-size: 12px;
+      }
+      .left{
+        height: 100%;
+        @include flex-y();
+      }
+      .label{
+        text-indent: 0.5rem;
+        @include font-title(14px,400);
+        @include flex-1();
+        @include css3(user-select, none);
+        margin-right: .25rem;
+        height: 2rem;
+        line-height: 2rem;
+        width: 100%;
+        @include clamp();
+        &.error{
+          color: var(--error-color);
+        }
+      }
+      &:hover{
+        background: var(--content-hover-bg)!important;
+      }
+      &.never{
+        .label{
+          color: var(--descrip-text);
+          opacity: .5;
+        }
+      }
+      &.bypass{
+        .label{
+          color: #f0f;
+          opacity: .5;
+        }
+      }
+    }
+
+  }
+}
